@@ -9,45 +9,54 @@
 
 using namespace std;
 
-static string ver = "0.2.0";
+static string ver = "0.2.1";
 static string author = "Loidbae";
 static string date = "04-18-2019";
 
 int stop; // for infinite repeats
 
-void StartEncrypt()
+void SimpleCaesar()
 {
 	cin.ignore();
 	string input;
 	Encryption format;
+	int offset;
 
-	
-	cout << "[Text input]: ";
+
+	cout << "[Encrypt]: ";
 	getline(cin, input);
-	format.erase(input,' ');
-	format.re_insert(input);
+	format.erase(input, ' ');
 
+	cout << "Set every character off by : \n";
+	cout << "[Offset]: ";
+	cin >> offset;
+	format.encrypt(input, offset);
+	
+//	system("Pause");
 
 }
 
 int SelectCase()
 {
-	
-	bool conditions_met = false;
-	while (conditions_met == false)
+	cout<<"[Select]: ";
+	cin.clear();
+	cin >> stop;
+
+	while (!cin.good() || stop > 3 || stop < 0)
 	{
+		cout << "[Select]: ";
+		cout << "#SelectCase# Error invalid input\n";
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "[Select]: ";
 		cin >> stop;
-		if (stop > 3 || stop <= 0)
+		if (cin.good() && stop <= 3 && stop > 0)
 		{
-			cout << "nope...invalid";
-		}
-		else
-		{
-			conditions_met = true;
 			return stop;
 		}
 	}
-	
+
+	return stop;
 }
 
 int main()
@@ -59,13 +68,13 @@ int main()
 		cout << "\n";
 		cout << "1 - Encrypt\n";
 		cout << "2 - Decrypt\n";
-		cout << "3 - Don't leave me :(\n";
-		cout << "[Select]: ";
+		cout << "3 - Please don't leave :(\n";
+		cout << "\n";
 
 		switch (SelectCase())
 		{
 		case 1:
-			StartEncrypt();
+			SimpleCaesar();
 			system("cls");
 			break;
 
@@ -74,6 +83,7 @@ int main()
 			break;
 
 		default:
+			cout << "awww :,(\n";
 			system("Pause");
 			break;
 		}
@@ -89,8 +99,8 @@ int main()
 }
 /*-----------------------------[Bugs]-------------------------------
 
-- input "wow cool yay" re_inserts to "wow coo lyay" for some reason.
-- SelectCase breaks after too many inputs.
+- input "wow cool yay" re_inserts to "wow coo lyay" for some reason. (fixed)
+- SelectCase breaks after too many inputs. And also breaks on non integer inputs. (fixed)
 
 
 
@@ -99,7 +109,7 @@ int main()
 
 */
 /*##################################################################
-#  							   Polish							   #
+#  							  -Polish-							   #
 #						   Title Animation						   #
 #																   #
 #																   #

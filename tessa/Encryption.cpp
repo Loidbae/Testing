@@ -3,36 +3,39 @@
 
 using namespace std;
 
-void Encryption::erase(std::string & getlineinput, char character)
+
+void Encryption::erase(std::string & input, char character)
 {
-	
-	
-	int found = getlineinput.find(character);
-	if (found == getlineinput.npos)
+	int found = input.find(character);
+	if (found == input.npos)
 	{
-		cout << "#Encryption::erase# Error .find returned npos !\n";
+		cout << "No spaces found...\n";
 	}
 	else
 	{
-		for (size_t i = 0; found != getlineinput.npos; i++)
+		for (size_t i = 0; found != input.npos; i++)
 		{
 			rem32[i] = found;
+			found = input.find(character, found + 1);
 			counter++;
-			getlineinput.erase(getlineinput.begin() + found);
-			found = getlineinput.find(character, found + 1);
+		}
+		for (int i = 0; i < counter; i++)
+		{
+			input.erase(input.begin()+rem32[i]-i);
 		}
 	}
+	cout << input << "\n";
+}
 
-	cout << getlineinput << "\n";
+void Encryption::encrypt(std::string & input, int offset)
+{
 }
 
 void Encryption::re_insert(std::string& input)
 {
-	
-	for (size_t i =0; i < counter;i++)
+	for (int i = 0; i < counter; i++)
 	{
-		input.insert(rem32[i]," ");
+		input.insert(rem32[i], " ");
 	}
 	cout << input << "\n";
-	//system("Pause");
 }
