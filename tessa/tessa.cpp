@@ -9,30 +9,49 @@
 
 using namespace std;
 
-static string ver = "0.2.1";
+static string ver = "0.3.0";
 static string author = "Loidbae";
 static string date = "04-18-2019";
 
 int stop; // for infinite repeats
 
-void SimpleCaesar()
+void SimpleCaesarEncrypter()
 {
 	cin.ignore();
 	string input;
 	Encryption format;
 	int offset;
 
-
 	cout << "[Encrypt]: ";
 	getline(cin, input);
 	format.erase(input, ' ');
 
-	cout << "Set every character off by : \n";
+	cout << "Enter how many times the characters should get offset \n";
 	cout << "[Offset]: ";
 	cin >> offset;
 	format.encrypt(input, offset);
-	
-//	system("Pause");
+
+	system("Pause");
+
+}
+
+void SimpleCaesarDecrypter()
+{
+	cin.ignore();
+	string input;
+	Encryption format;
+	int offset;
+
+	cout << "[Decrypt]: ";
+	getline(cin, input);
+	format.erase(input,' ');
+
+	cout << "Enter offset value used to encrypt \n";
+	cout << "[Offset]: ";
+	cin >> offset;
+	format.decrypt(input, offset);
+
+	system("Pause");
 
 }
 
@@ -74,12 +93,13 @@ int main()
 		switch (SelectCase())
 		{
 		case 1:
-			SimpleCaesar();
+			SimpleCaesarEncrypter();
 			system("cls");
 			break;
 
 		case 2:
-
+			SimpleCaesarDecrypter();
+			system("cls");
 			break;
 
 		default:

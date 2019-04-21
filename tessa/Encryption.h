@@ -14,10 +14,10 @@ public:
 
 	void erase(std::string& input, char character);
 	void encrypt(std::string& input, int offset);
+	void decrypt(std::string& input, int offset);
 
 private:
-	void re_insert(std::string& input);
-
+	void re_insert(std::string& input) const;
 
 	int counter = 0;
 	std::array<int, 999> rem32;
